@@ -1,0 +1,10 @@
+{
+  "name": "galatiqon",
+  "private": true,
+  "description": "Repo root: the site lives in web/. This file only pins the package manager for Vercel builds.",
+  "packageManager": "pnpm@10.18.3",
+  "scripts": {
+    "build": "cd web && pnpm install && pnpm build",
+    "dev": "cd web && pnpm dev"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "cd web && pnpm install",
+  "buildCommand": "cd web && pnpm build",
+  "outputDirectory": "web/dist",
+  "cleanUrls": true,
+  "headers": [
+    { "source": "/models/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] },
+    { "source": "/galatiqon-demo.mp4", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] }
+  ]
+}

@@ -1,6 +1,6 @@
 # Galatiqon
 
-Repository: https://github.com/ionpetro/galatiqon · Site: `web/` (`pnpm dev`) · Demo video: `video/out/galatiqon-demo.mp4`
+Live site: https://galatiqon.vercel.app · Repository: https://github.com/ionpetro/galatiqon · Demo video: `web/public/galatiqon-demo.mp4` (`video/` has the Remotion source)
 
 A personal push-to-talk device for each member of the Galatiq team: a Raspberry Pi with a button,
 a mic, a speaker and a small screen, wired to that person's own **Grok Bot**. Hold the button, ask,
@@ -59,6 +59,7 @@ Like muse-bike, the project has three more pieces, now in one React site (`web/`
 
 ```bash
 cd web && pnpm install && pnpm dev          # http://localhost:5173
+bash scripts/deploy-web.sh                   # build locally, deploy to https://galatiqon.vercel.app
 ```
 
 Branding follows galatiq.ai: their wordmark and G mark (extracted from the site's inline SVG into

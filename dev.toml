@@ -1,0 +1,21 @@
+# Laptop dev config (macOS): GALATIQON_CONFIG=./dev.toml GALATIQON_SOCKET=/tmp/galatiqon.sock
+# Needs `gb login` and `gb daemon run` in another terminal. Start the output daemon first:
+#   python3 -m galatiqon.output_daemon &   then   python3 -m galatiqon.ask "what does Galatiq do?"
+# Typed-in-the-app -> spoken on the Pi:   python3 -m galatiqon.listen
+[owner]
+name = "Ion"
+
+[grokbot]
+transport = "gbd"       # gbd_socket empty = ~/.config/gb/default/gbd.sock
+reply_timeout_s = 120
+
+[listen]
+# Laptop bridge: anything typed to the bot in the Grok Bot app is spoken by the muse-bike Pi.
+# The Pi needs: echo 'pi ALL=(muse) NOPASSWD: /usr/local/bin/bike-say' | sudo tee /etc/sudoers.d/bike-say-bridge
+say_command = "ssh -o BatchMode=yes -o ConnectTimeout=10 pi@musebike.local sudo -n -u muse bike-say"
+
+[display]
+backend = "none"
+
+[tts]
+engine = "say"

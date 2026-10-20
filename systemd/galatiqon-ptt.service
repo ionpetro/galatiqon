@@ -1,0 +1,20 @@
+[Unit]
+Description=Galatiqon - push-to-talk
+After=galatiqon-output.service galatiqon-gbd.service
+Wants=galatiqon-output.service galatiqon-gbd.service
+
+[Service]
+User=galatiqon
+Group=galatiqon
+SupplementaryGroups=audio gpio
+# lgpio writes its .lgd-nfy* pipes into the working directory, so it must be writable
+RuntimeDirectory=galatiqon-ptt
+WorkingDirectory=/run/galatiqon-ptt
+Environment=PYTHONUNBUFFERED=1
+Environment=HOME=/home/galatiqon
+ExecStart=/opt/galatiqon/venv/bin/galatiqon-ptt
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

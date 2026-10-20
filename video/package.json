@@ -1,0 +1,24 @@
+{
+  "name": "galatiqon-video",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render Demo out/galatiqon-demo.mp4 --codec=h264 --gl=angle"
+  },
+  "dependencies": {
+    "@react-three/fiber": "9.3.0",
+    "@remotion/cli": "4.0.380",
+    "@remotion/google-fonts": "4.0.380",
+    "@remotion/three": "4.0.380",
+    "@remotion/transitions": "4.0.380",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.380",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/three": "0.180.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,23 @@
+# python
+__pycache__/
+*.egg-info/
+.venv/
+venv/
+enclosure/venv/
+build/
+# node
+node_modules/
+web/dist/
+video/out/stills/
+video/out/test*.png
+.remotion/
+# os / editors
+.DS_Store
+.probe
+*.log
+# never commit credentials: gb keeps them in ~/.config/gb, the device config lives in /etc/galatiqon
+credentials.json
+*.pem
+*.key
+.env
+.env.*

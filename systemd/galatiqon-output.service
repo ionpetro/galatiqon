@@ -1,0 +1,18 @@
+[Unit]
+Description=Galatiqon - screen and speech output
+After=sound.target
+
+[Service]
+User=galatiqon
+Group=galatiqon
+SupplementaryGroups=audio video render input
+RuntimeDirectory=galatiqon
+RuntimeDirectoryMode=0750
+Environment=PYTHONUNBUFFERED=1
+Environment=HOME=/home/galatiqon
+ExecStart=/opt/galatiqon/venv/bin/galatiqon-output
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

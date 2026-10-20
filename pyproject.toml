@@ -1,0 +1,25 @@
+[project]
+name = "galatiqon"
+version = "0.1.0"
+description = "Galatiqon: a push-to-talk Grok Bot companion device for the Galatiq team, on a Raspberry Pi"
+requires-python = ">=3.11"
+dependencies = [
+    "vosk>=0.3.45",
+    "piper-tts>=1.2",
+    # gpiozero, lgpio and pygame come from apt (python3-gpiozero etc.); see scripts/setup.sh
+]
+
+[project.scripts]
+galatiqon-say = "galatiqon.say:main"
+galatiqon-ask = "galatiqon.ask:main"
+galatiqon-provision = "galatiqon.provision:main"
+galatiqon-ptt = "galatiqon.ptt:main"
+galatiqon-listen = "galatiqon.listen:main"
+galatiqon-output = "galatiqon.output_daemon:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["galatiqon"]

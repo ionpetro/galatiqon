@@ -1,0 +1,16 @@
+[Unit]
+Description=Galatiqon - speak what the bot writes (typed in the app, routines, teammates)
+After=galatiqon-output.service galatiqon-gbd.service
+Wants=galatiqon-output.service galatiqon-gbd.service
+
+[Service]
+User=galatiqon
+Group=galatiqon
+Environment=PYTHONUNBUFFERED=1
+Environment=HOME=/home/galatiqon
+ExecStart=/opt/galatiqon/venv/bin/galatiqon-listen
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

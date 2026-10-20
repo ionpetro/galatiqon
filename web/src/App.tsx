@@ -6,7 +6,6 @@ import Waves from './components/Waves'
 
 const NAV = [
   ['device', 'Device'],
-  ['demo', 'Demo'],
   ['live', 'Live'],
   ['setup', 'Setup'],
 ] as const
@@ -111,34 +110,6 @@ export default function App() {
           ))}
         </div>
       </div>
-
-      {/* -------------------------------------------------------------- demo */}
-      <section id="demo" className="max-w-7xl mx-auto px-5 md:px-8 py-24">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-          <div>
-            <div className="eyebrow mb-3">Demo · 65 seconds</div>
-            <h2 className="display text-3xl md:text-[44px] leading-tight">See it work</h2>
-          </div>
-          <p className="text-sm text-ink-dim max-w-sm">The device, what's inside, a question and its spoken answer, two galatiqons talking, and the bridge to Grok Bot.</p>
-        </div>
-        <div className="relative rounded-2xl overflow-hidden border border-line bg-black shadow-[0_40px_120px_-40px_rgba(0,154,108,0.45)]">
-          <video
-            className="w-full aspect-video block"
-            src="/galatiqon-demo.mp4"
-            poster="/galatiqon-demo-poster.png"
-            controls
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-        </div>
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-faint">
-          <span>Rendered with Remotion from the same 3D model and brand assets as this page. No audio.</span>
-          <a className="pill hover:border-mint hover:text-mint transition" href="/galatiqon-demo.mp4" download>download mp4</a>
-        </div>
-      </section>
 
       {/* -------------------------------------------------------------- live */}
       <section id="live" className="max-w-7xl mx-auto px-5 md:px-8 py-24">

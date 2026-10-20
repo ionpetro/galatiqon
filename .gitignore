@@ -24,3 +24,4 @@ credentials.json
 
 # renders are regenerable (npx remotion render); the shipped demo lives in web/public/galatiqon-demo.mp4
 video/out/
+.vercel

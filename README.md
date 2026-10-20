@@ -1,5 +1,7 @@
 # Galatiqon
 
+Repository: https://github.com/ionpetro/galatiqon · Site: `web/` (`pnpm dev`) · Demo video: `video/out/galatiqon-demo.mp4`
+
 A personal push-to-talk device for each member of the Galatiq team: a Raspberry Pi with a button,
 a mic, a speaker and a small screen, wired to that person's own **Grok Bot**. Hold the button, ask,
 and the bot's answer is spoken and shown. The bots carry the company context, are connected to the

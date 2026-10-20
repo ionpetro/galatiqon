@@ -6,6 +6,7 @@ import Waves from './components/Waves'
 
 const NAV = [
   ['device', 'Device'],
+  ['demo', 'Demo'],
   ['live', 'Live'],
   ['setup', 'Setup'],
 ] as const
@@ -22,6 +23,7 @@ function Logo({ className = '' }: { className?: string }) {
 
 export default function App() {
   const [exploded, setExploded] = useState(false)
+  const [demoOpen, setDemoOpen] = useState(false)
   const [spin, setSpin] = useState(true)
   const [active, setActive] = useState<string>('device')
 
@@ -30,6 +32,15 @@ export default function App() {
     for (const [id] of NAV) { const el = document.getElementById(id); if (el) obs.observe(el) }
     return () => obs.disconnect()
   }, [])
+
+  useEffect(() => {
+    if (!demoOpen) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setDemoOpen(false) }
+    window.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev }
+  }, [demoOpen])
 
   return (
     <div className="studio min-h-screen">
@@ -64,7 +75,10 @@ export default function App() {
             </p>
             <div className="mt-8 flex items-center gap-3 pointer-events-auto">
               <a href="#setup" className="btn-white">Build one</a>
-              <a href="#live" className="btn-ghost">See it live</a>
+              <button type="button" onClick={() => setDemoOpen(true)} className="btn-ghost flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-white/10 grid place-items-center"><svg viewBox="0 0 10 10" className="w-2.5 h-2.5" fill="currentColor" aria-hidden="true"><path d="M2 1.2v7.6L8.4 5z" /></svg></span>
+                Watch the demo
+              </button>
             </div>
           </div>
         </div>
@@ -98,6 +112,34 @@ export default function App() {
         </div>
       </div>
 
+      {/* -------------------------------------------------------------- demo */}
+      <section id="demo" className="max-w-7xl mx-auto px-5 md:px-8 py-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <div className="eyebrow mb-3">Demo · 65 seconds</div>
+            <h2 className="display text-3xl md:text-[44px] leading-tight">See it work</h2>
+          </div>
+          <p className="text-sm text-ink-dim max-w-sm">The device, what's inside, a question and its spoken answer, two galatiqons talking, and the bridge to Grok Bot.</p>
+        </div>
+        <div className="relative rounded-2xl overflow-hidden border border-line bg-black shadow-[0_40px_120px_-40px_rgba(0,154,108,0.45)]">
+          <video
+            className="w-full aspect-video block"
+            src="/galatiqon-demo.mp4"
+            poster="/galatiqon-demo-poster.png"
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        </div>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-faint">
+          <span>Rendered with Remotion from the same 3D model and brand assets as this page. No audio.</span>
+          <a className="pill hover:border-mint hover:text-mint transition" href="/galatiqon-demo.mp4" download>download mp4</a>
+        </div>
+      </section>
+
       {/* -------------------------------------------------------------- live */}
       <section id="live" className="max-w-7xl mx-auto px-5 md:px-8 py-24">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
@@ -122,6 +164,23 @@ export default function App() {
         </div>
         <Setup />
       </section>
+
+      {demoOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-10 bg-black/85 backdrop-blur-md" onClick={() => setDemoOpen(false)} role="dialog" aria-modal="true" aria-label="Galatiqon demo video">
+          <div className="relative w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3">
+                <img src="/galatiq-logo.svg" alt="Galatiq" className="h-[14px] w-auto" />
+                <span className="wordmark text-[10px] text-ink-dim">GALATIQON · DEMO</span>
+              </div>
+              <button type="button" onClick={() => setDemoOpen(false)} className="pill hover:border-mint hover:text-mint transition" aria-label="Close">close · esc</button>
+            </div>
+            <div className="rounded-2xl overflow-hidden border border-line bg-black shadow-[0_60px_160px_-40px_rgba(0,154,108,0.5)]">
+              <video className="w-full aspect-video block" src="/galatiqon-demo.mp4" poster="/galatiqon-demo-poster.png" controls autoPlay playsInline />
+            </div>
+          </div>
+        </div>
+      )}
 
       <footer className="border-t border-line">
         <div className="max-w-7xl mx-auto px-5 md:px-8 py-10 flex flex-wrap items-center justify-between gap-4 text-xs text-ink-faint">

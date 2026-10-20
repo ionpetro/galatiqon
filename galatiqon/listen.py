@@ -30,6 +30,7 @@ import sys
 import threading
 import time
 from collections import deque
+from pathlib import Path
 from collections.abc import Callable
 
 from . import config, grokbot, ipc
@@ -147,14 +148,20 @@ class Listener:
 
 
 def command_speaker(command: str) -> Speak:
-    """Speak by running a shell command with the text as its last argument."""
+    """Speak by running a shell command with the text as its last argument.
+
+    When the command is ssh, the remote side re-parses the arguments with a shell, so the text is
+    quoted for it (an apostrophe in "I'm here" would otherwise break the remote command line).
+    """
     argv = shlex.split(command)
     if not argv:
         raise ValueError("[listen] say_command is empty")
+    remote_shell = Path(argv[0]).name == "ssh"
 
     def speak(text: str) -> None:
+        arg = shlex.quote(text) if remote_shell else text
         try:
-            p = subprocess.run(argv + [text], capture_output=True, text=True, timeout=60)
+            p = subprocess.run(argv + [arg], capture_output=True, text=True, timeout=60)
         except (OSError, subprocess.TimeoutExpired) as e:
             log.error("say_command failed: %s", e)
             return

@@ -102,7 +102,12 @@ export default function App() {
       {/* a hairline frame strip, like the partner strip on galatiq.ai */}
       <div className="frame">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4">
-          {[['Powered by', 'xAI Grok Bot'], ['Runs on', 'Raspberry Pi'], ['Speech', 'Vosk + Piper, offline'], ['Made in', 'Austin, Oct 2026']].map(([k, v]) => (
+          {([
+            ['Powered by', <>xAI Grok Bot · <a href="https://www.adapter.com/" target="_blank" rel="noreferrer" className="text-ink hover:text-mint underline decoration-white/20 underline-offset-4 transition">Adapter</a></>],
+            ['Runs on', 'Raspberry Pi'],
+            ['Speech', 'Vosk + Piper, offline'],
+            ['Made in', 'Austin, Oct 2026'],
+          ] as [string, React.ReactNode][]).map(([k, v]) => (
             <div key={k} className="frame-cell px-5 py-5">
               <div className="mono text-[10px] tracking-[0.2em] uppercase text-ink-faint">{k}</div>
               <div className="mt-1 text-sm">{v}</div>
@@ -156,7 +161,10 @@ export default function App() {
       <footer className="border-t border-line">
         <div className="max-w-7xl mx-auto px-5 md:px-8 py-10 flex flex-wrap items-center justify-between gap-4 text-xs text-ink-faint">
           <Logo />
-          <span>Built at the Grok Bot Hackathon, Austin, October 2026 · <a className="hover:text-ink" href="https://galatiq.ai" target="_blank" rel="noreferrer">galatiq.ai</a></span>
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>Built at the Grok Bot Hackathon, Austin, October 2026 · <a className="hover:text-ink" href="https://galatiq.ai" target="_blank" rel="noreferrer">galatiq.ai</a></span>
+            <a href="https://www.adapter.com/" target="_blank" rel="noreferrer" className="pill hover:border-mint hover:text-mint transition">Powered by Adapter ↗</a>
+          </span>
         </div>
       </footer>
     </div>
